@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/fontello.css">
+    <title></title>
+    <h1 class="alert alert-secondary base" role="alert">
+        {% if current_user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="/logout">{{ current_user.name }}</a>
+        <a class="btn btn-secondary btn-lg" href="/add_cat">Подать объявление</a>
+        {% else %}
+        <p>
+            <a class="btn btn-success btn-lg" href="/register">Зарегистрироваться</a>
+            <a class="btn btn-success btn-lg" href="/login">Войти</a>
+            <a class="btn btn-secondary btn-lg" href="/login">Подать объявление</a>
+        </p>
+        {% endif %}
+        {% block top %}
+        {% endblock %}
+    </h1>
+
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+<body>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

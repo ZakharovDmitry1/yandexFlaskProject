@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block top %}
+<a class="btn btn-secondary btn-lg" href="/">На главную</a>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Новое объявление</h1>
+    <form class="login_form" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <h2>{{ form.type_advertisement.label }}</h2>
+            
+            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+            <label class="btn btn-secondary" for="option1">На продажу</label>
+
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+            <label class="btn btn-secondary" for="option2">В добрые руки</label>
+
+            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+            <label class="btn btn-secondary" for="option3">Потерявшийся</label>
+            {% for error in form.type_advertisement.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>{{ form.breed.label }}</h2>
+            <select id="selectID">
+                {% for i in form.list_of_breed %}
+                <option value={{i}}>{{i}}</option>
+                {% endfor %}          
+            </select>
+        </p>
+        <p>
+            <h2>{{ form.title.label }}</h2>
+            {{ form.title(class="form-control") }}<br>
+            {% for error in form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>{{ form.description.label }}</h2>
+            {{ form.description(class="form-control") }}<br>
+            {% for error in form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>{{ form.pet_color.label }}</h2>
+            
+            <input type="radio" class="btn-check" name="color" id="color1" autocomplete="off" checked>
+            <label class="btn btn-light" for="color1">белый</label>
+
+            <input type="radio" class="btn-check" name="color" id="color2" autocomplete="off">
+            <label class="btn btn-dark" for="color2">черный</label>
+
+            <input type="radio" class="btn-check" name="color" id="color3" autocomplete="off">
+            <label class="btn btn-danger" for="color3">рыжий</label>
+
+            <input type="radio" class="btn-check" name="color" id="color4" autocomplete="off">
+            <label class="btn btn-secondary" for="color4">другой</label>
+            {% for error in form.pet_color.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>{{ form.cost.label }}</h2>
+            {{ form.cost(class="form-control") }}<br>
+            {% for error in form.cost.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            <p>Загрузите ваши фотографии на сервер</p>
+            <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
+        </p>
+        <p>
+            <h2>{{ form.telephone.label }}</h2>
+            {{ form.telephone(class="form-control", type="telephone") }}<br>
+            {% for error in form.telephone.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        <div>{{ message }}</div>
+    </form>
+{% endblock %}
