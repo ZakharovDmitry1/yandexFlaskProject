@@ -2,9 +2,42 @@
 
 {% block content %}
 <h1>Купить кошку</h1>
-<p>нашлось 1 045 объявлений кошек на продажу в Москве, которые соответствуют вашим критериям. 
+<p>нашлось 1 045 объявлений кошек на продажу.
     Подберите понравившегося питомца и свяжитесь с продавцом в два клика.</p>
 <ul class="products clearfix">
+	{% for i in range(30) %}
+	<li class="product-wrapper">
+		<li class="product-wrapper">
+		<div class="card">
+			<!-- Верхняя часть -->
+			<div class="card__top">
+			  	<!-- Изображение-ссылка товара -->
+			  	<a href="#" class="card__image">
+					<img
+				  	src="./image/iphone-14-pro-max-gold.png"
+				  	alt="Apple IPhone 14 PRO Max Gold"
+					/>
+			  	</a>
+			  	<!-- Скидка на товар -->
+			  	<div class="card__label">-10%</div>
+			</div>
+			<!-- Нижняя часть -->
+			<div class="card__bottom">
+			  	<!-- Цены на товар (с учетом скидки и без)-->
+			  	<div class="card__prices">
+					<div class="card__price card__price--discount">135 000</div>
+					<div class="card__price card__price--common">150 000</div>
+			  	</div>
+			  	<!-- Ссылка-название товара -->
+			  	<a href="#" class="card__title">
+				Смартфон Apple IPhone 14 Pro Max 256Gb, золотой
+			  	</a>
+			  	<!-- Кнопка добавить в корзину -->
+			  	<button class="card__add">В корзину</button>
+			</div>
+		</div>
+	</li>
+	{% endfor %}
 	<li class="product-wrapper">
 		<a href="" class="product"></a>
 	</li>

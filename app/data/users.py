@@ -7,6 +7,9 @@ from sqlalchemy_serializer import SerializerMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from .db_session import SqlAlchemyBase
+from .. import db
+
+
 
 
 class User(SqlAlchemyBase, UserMixin, SerializerMixin):
@@ -22,7 +25,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     email = sqlalchemy.Column(sqlalchemy.String, unique=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
-    posts = relationship('Posts', backref='author', lazy='dynamic')
+    post = orm.relationship('Posts', backref='users')
 
     def __repr__(self):
         return f'<Colonist> {self.id} {self.surname} {self.name}'
