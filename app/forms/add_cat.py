@@ -21,6 +21,8 @@ def validate_not_mobile(form, value):
 
     rule = re.compile(r'(^[+0-9]{1,3})*([0-9]{10,11}$)')
 
+    print(value.data)
+
     if rule.search(value.data):
         msg = u"You cannot add mobile numbers."
         raise ValidationError(msg)
@@ -34,5 +36,5 @@ class AddCat(FlaskForm):
     description = StringField('Описание объявления', default='')
     pet_color = SelectField('Окрас питомца', choices=['белый', "черный", "рыжий", 'другой'], default='другой')
     cost = IntegerField('Цена питомца', default=0)
-    telephone = StringField('Номер телефона', validators=[validate_not_mobile])
+    telephone = StringField('Номер телефона', validators=[])
     submit = SubmitField('Опубликовать')

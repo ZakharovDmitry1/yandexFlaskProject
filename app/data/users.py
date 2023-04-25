@@ -10,8 +10,6 @@ from .db_session import SqlAlchemyBase
 from .. import db
 
 
-
-
 class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
@@ -25,7 +23,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     email = sqlalchemy.Column(sqlalchemy.String, unique=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
-    post = orm.relationship('Posts', backref='users')
+    # posts = orm.relationship("Posts", back_populates='user')
 
     def __repr__(self):
         return f'<Colonist> {self.id} {self.surname} {self.name}'

@@ -1,3 +1,5 @@
+import secrets
+
 from flask import render_template, redirect, make_response, jsonify, request
 from flask_login import logout_user, login_required, login_manager, LoginManager, login_user
 
@@ -90,9 +92,16 @@ def add_cat():
         posts = Posts()
         posts.title = form.title.data
         posts.cost = form.cost.data
-        posts.image = form.title.data
-        f = request.files['file']
-        with open(f'app/static/img/{form.title.data}.png', 'wb') as file:
-            file.write(f.read())
+        try:
+            f = request.files['file']
+            if not f:
+                raise Exception
+            posts.image = secrets.token_hex(16) + '.png'
+            with open(f'app/static/img/{posts.image}', 'wb') as file:
+                file.write(f.read())
+        except Exception:
+            pass
+        db_sess.add(posts)
+        db_sess.commit()
         return redirect('/')
     return render_template('add_cat.html', form=form)

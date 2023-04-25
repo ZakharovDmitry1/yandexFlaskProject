@@ -16,5 +16,7 @@ class Posts(SqlAlchemyBase, UserMixin, SerializerMixin):
     image = sqlalchemy.Column(sqlalchemy.String, default='default_cat.png')
     cost = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     title = sqlalchemy.Column(sqlalchemy.String, default='')
-    user_id = db.Column(sqlalchemy.Integer(), sqlalchemy.ForeignKey('users.id'))
+    breed = sqlalchemy.Column(sqlalchemy.String, default='')
+    # users_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
+    # user = orm.relationship('User')
 
